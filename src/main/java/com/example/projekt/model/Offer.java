@@ -5,12 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import javax.validation.Valid;
 
 @Entity
 public class Offer {
@@ -19,15 +22,15 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
 
+    @NotNull
     @Positive
-    @NotBlank
     private int ammount;
 
+    @NotNull
     @Positive
-    @NotBlank
     private int price;
 
-    @NotBlank
+    @NotNull
     private Date deliveryDate;
 
     public Offer(){

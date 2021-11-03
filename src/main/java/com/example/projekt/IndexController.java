@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping("/offers")
 public class IndexController {
 
     private OfferRepository offerRepository;
@@ -27,7 +28,7 @@ public class IndexController {
         return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there " + name + "!</h1><hr/></div>";
     }
 
-    @PostMapping
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Offer create(@RequestBody @Valid Offer offer){
         return offerRepository.save(offer);

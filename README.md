@@ -5,6 +5,13 @@ Web-Backend Semesterprojekt
 * Java(11) Installiert
 
 ## Commands
+**DB und ersten User erstellen:**
 ```
-Raum für notwendige Commands usw
+create database projekt;
+create user 'projektuser'@'%' identified by 'password';
+grant all on projekt.* to 'projektuser'@'%';
 ```
+
+
+  
+ ## Sonstiges
