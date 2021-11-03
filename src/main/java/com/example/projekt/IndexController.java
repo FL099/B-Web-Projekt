@@ -32,4 +32,10 @@ public class IndexController {
     public Offer create(@RequestBody @Valid Offer offer){
         return offerRepository.save(offer);
     }
+
+    @DeleteMapping("/{id}")
+    public Offer deleteOffer(@PathVariable("id") Offer offer){
+        offerRepository.delete(offer);
+        return offer;
+    }
 }
