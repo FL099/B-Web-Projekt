@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Controller
+@RestController
 public class IndexController {
 
     private OfferRepository offerRepository;
+
+    public IndexController(OfferRepository offerRepository){
+        this.offerRepository = offerRepository;
+    }
 
     @GetMapping("/")
     public @ResponseBody String index(){
@@ -26,6 +30,6 @@ public class IndexController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Offer create(@RequestBody @Valid Offer offer){
-        return null;//OfferRepository.save(offer);
+        return offerRepository.save(offer);
     }
 }
