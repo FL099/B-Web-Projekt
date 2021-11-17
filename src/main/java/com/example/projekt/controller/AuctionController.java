@@ -1,6 +1,8 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.model.Auction;
 import com.example.projekt.model.Offer;
+import com.example.projekt.repository.AuctionRepository;
 import com.example.projekt.repository.OfferRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -16,32 +18,28 @@ import java.util.Map;
 @RequestMapping("/auctions")
 public class AuctionController {
 
-    private OfferRepository offerRepository;
+    private AuctionRepository auctionRepository;
 
     public AuctionController(OfferRepository offerRepository){
-        this.offerRepository = offerRepository;
+        this.auctionRepository = auctionRepository;
     }
 
-    @GetMapping
-    public @ResponseBody String index(){
-        return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there! </h1><hr/></div>";
-    }
-
-    @GetMapping("/{name}")
-    public @ResponseBody String method2(@PathVariable String name){
-        return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there " + name + "!</h1><hr/></div>";
+    @GetMapping(produces = "raw/json")
+    public @ResponseBody Auction index(){
+        return new Auction("product", 2);
+        //return "{\"startTime\":\"dd/mm/yyyy\",\"endTime\":\"dd/mm/yyyy\",\"product\":\"Product name\",\"amount\":\"5\"}";
     }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Offer create(@RequestBody @Valid Offer offer){
-        return offerRepository.save(offer);
+    public Auction create(@RequestBody @Valid Auction auction){
+        return auctionRepository.save(auction);
     }
 
     @DeleteMapping("/{id}")
-    public Offer deleteOffer(@PathVariable("id") Offer offer){
-        offerRepository.delete(offer);
-        return offer;
+    public Auction deleteAuction(@PathVariable("id") Auction auction){
+        auctionRepository.delete(auction);
+        return auction;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
