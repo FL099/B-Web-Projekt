@@ -22,6 +22,16 @@ falls keine Datenbank ausgewählt:
 MariaDB[(none)]> use projekt;
 ```
 
+## Production-ready machen
+
+Alle Rechte an der DB entfernen
+```
+mysql> revoke all on projekt.* from 'projektuser'@'%';
+```
+Notwendige Rechte wieder hinzufügen
+```
+mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
+```
   
  ## Sonstiges
 

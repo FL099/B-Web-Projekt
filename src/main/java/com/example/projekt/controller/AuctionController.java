@@ -27,7 +27,7 @@ public class AuctionController {
     @GetMapping(produces = "raw/json")
     public @ResponseBody Auction index(){
         return new Auction("product", 2);
-        //return "{\"startTime\":\"dd/mm/yyyy\",\"endTime\":\"dd/mm/yyyy\",\"product\":\"Product name\",\"amount\":\"5\"}";
+        //return "{\"startTime\":\"dd/mm/yyyy\",\"endTime\":\"dd/mm/yyyy\",\"product\":\"Product name\",\"amount\": 5}";
     }
 
     @PostMapping("/")
