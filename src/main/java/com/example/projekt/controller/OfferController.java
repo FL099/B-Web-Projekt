@@ -1,4 +1,4 @@
-package com.example.projekt;
+package com.example.projekt.controller;
 
 import com.example.projekt.model.Offer;
 import com.example.projekt.repository.OfferRepository;
@@ -13,24 +13,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/")
-public class IndexController {
+@RequestMapping("/offers")
+public class OfferController {
 
     private OfferRepository offerRepository;
 
-    public IndexController(OfferRepository offerRepository){
+    public OfferController(OfferRepository offerRepository){
         this.offerRepository = offerRepository;
     }
 
-    @GetMapping(produces = "raw/json")
+    @GetMapping
     public @ResponseBody String index(){
-        return "{\"Hint\": \"You can access offers with /offers , auctions with /auctions and Information about authentication with /auth \"}";
+        return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there! </h1><hr/></div>";
     }
 
-    @PostMapping(produces = "raw/json")
+    @GetMapping("/{name}")
+    public @ResponseBody String method2(@PathVariable String name){
+        return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there " + name + "!</h1><hr/></div>";
+    }
+
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody @Valid Offer offer){
-        return "{\"Hint\": \"You can access offers with /offers , auctions with /auctions and Information about authentication with /auth \"}";
+    public Offer create(@RequestBody @Valid Offer offer){
+        return offerRepository.save(offer);
+    }
+
+    @DeleteMapping("/{id}")
+    public Offer deleteOffer(@PathVariable("id") Offer offer){
+        offerRepository.delete(offer);
+        return offer;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

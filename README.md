@@ -12,6 +12,19 @@ create user 'projektuser'@'%' identified by 'password';
 grant all on projekt.* to 'projektuser'@'%';
 ```
 
+## DB Sachen
+
+```
+xampp starten mysql starten, 
+konsole über xampp starten, dann:
+> mysql -u root -p
+falls keine Datenbank ausgewählt: 
+MariaDB[(none)]> use projekt;
+```
 
   
  ## Sonstiges
+
+
+## nützliche links
+[spring.io mysql guide](https://spring.io/guides/gs/accessing-data-mysql/)  

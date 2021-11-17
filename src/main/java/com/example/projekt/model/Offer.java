@@ -4,16 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
-import javax.validation.Valid;
 
 @Entity
 public class Offer {
@@ -22,15 +17,15 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
 
-    @NotNull
-    @Positive
-    private int ammount;
+    @NotNull( message = "amount ist notwendig")
+    @Positive( message = "amount muss positiv sein")
+    private int amount;
 
-    @NotNull
-    @Positive
+    @NotNull( message = "price ist notwendig")
+    @Positive( message = "price muss positiv sein")
     private int price;
 
-    @NotNull
+    @NotNull( message = "deliveryDate ist notwendig")
     private Date deliveryDate;
 
     public Offer(){
@@ -45,12 +40,12 @@ public class Offer {
         Id = id;
     }
 
-    public int getAmmount() {
-        return ammount;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setAmmount(int ammount) {
-        this.ammount = ammount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public int getPrice() {
@@ -69,14 +64,14 @@ public class Offer {
         this.deliveryDate = deliveryDate;
     }
 
-    public Offer(int ammount, int price){
-        this.ammount = ammount;
+    public Offer(int amount, int price){
+        this.amount = amount;
         this.price = price;
         this.deliveryDate = new Date();
     }
 
-    public Offer(int ammount, int price, String deliveryDate){
-        this.ammount = ammount;
+    public Offer(int amount, int price, String deliveryDate){
+        this.amount = amount;
         this.price = price;
         try {
             this.deliveryDate = new SimpleDateFormat("dd/mm/yyyy").parse(deliveryDate);
