@@ -23,7 +23,7 @@ public class User {
     private String lastName;
 
     @NotNull(message = "Email darf nicht leer sein")
-    @Email
+    @Email(message = "ungültiges Email Format")
     private String email;
 
     @NotNull(message = "Passwort darf nicht leer sein")

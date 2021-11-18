@@ -38,3 +38,4 @@ mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
 
 ## nützliche links
 [spring.io mysql guide](https://spring.io/guides/gs/accessing-data-mysql/)  
+[spring.io fileupload guide](https://spring.io/guides/gs/uploading-files/)
