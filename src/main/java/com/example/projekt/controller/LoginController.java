@@ -53,7 +53,7 @@ public class LoginController {
             //return "Login erfolgreich \n eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1heCBNdXN0ZXJtYW5uIiwiaWF0IjoxNjM4MDM5MDIyfQ.tjA107F7gW21ImFN0XHTxPgruG2iNqr-8z99byBjji0";
             return token;
         }else {
-            return "Login fehlgeschlagen: falsche Username/Passwort Kombination  ";
+            return "Login fehlgeschlagen: falsche Username/Passwort Kombination  \n" + newHash + "\n" + vglWert;
         }
 
     }

@@ -40,7 +40,7 @@ public class UserController {
             userRepository.save(user);
 
             //JWT Token generieren
-            return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword()));
+            return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword())) + "\n" + temp;
         }
         return "registration failed";
         //return userRepository.save(user);
