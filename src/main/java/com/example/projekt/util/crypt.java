@@ -15,7 +15,14 @@ public class crypt {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return toReturn;
+    }
+
+    public static Boolean isValid(String trueValue, String compareValue){
+        if (compareValue.equals(trueValue)){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

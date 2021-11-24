@@ -3,10 +3,8 @@ package com.example.projekt.controller;
 import com.example.projekt.model.Auth;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-
 import static com.example.projekt.util.crypt.getSHA256;
+import static com.example.projekt.util.crypt.isValid;
 
 @RestController
 @RequestMapping("/auth")
@@ -25,10 +23,10 @@ public class LoginController {
         //Todo: vglWert als Datenbankabfrage
         String vglWert = "7dfc0aa32bb5dda2a049f6bd0a3c3419e86b3d7622494c57030944d814233d03";
 
-        if (newHash.equals(vglWert)){
+        if (isValid(vglWert, newHash)){
             return "success ";
         }else {
-            return "fail, du Hund";
+            return "fail";
         }
 
     }
