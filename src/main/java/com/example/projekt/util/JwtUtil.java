@@ -8,14 +8,20 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.projekt.model.Auth;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class JwtUtil {
 
     static Algorithm algorithm = Algorithm.HMAC256("VeryVerySecureSecretKeyForJwtTokenHashAndStuff");
 
     public static String generateToken(Auth auth){
         try {
+            Calendar exp = Calendar.getInstance();
+            exp.add(Calendar.HOUR_OF_DAY, 1);
             String token = JWT.create()
                     .withClaim("name", auth.getEmail())
+                    .withExpiresAt(exp.getTime())
                     .withIssuer("DrinkMarket")
                     .sign(algorithm);
             return token;
@@ -31,7 +37,11 @@ public class JwtUtil {
                     .withIssuer("DrinkMarket")
                     .build(); //Reusable verifier instance
             DecodedJWT jwt = verifier.verify(token);
-            return jwt.toString();
+            String tmp = "";
+            tmp += jwt.getExpiresAt() + "\n";
+            tmp += jwt.getClaim("name") + "\n";
+            tmp += jwt.getIssuer();
+            return tmp;
 
         } catch (JWTVerificationException exception){
             //Invalid signature/claims
