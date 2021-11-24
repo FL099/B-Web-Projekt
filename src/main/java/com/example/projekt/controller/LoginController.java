@@ -24,7 +24,7 @@ public class LoginController {
         String vglWert = "7dfc0aa32bb5dda2a049f6bd0a3c3419e86b3d7622494c57030944d814233d03";
 
         if (isValid(vglWert, newHash)){
-            return "Login erfolgreich";
+            return "Login erfolgreich \n eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1heCBNdXN0ZXJtYW5uIiwiaWF0IjoxNjM4MDM5MDIyfQ.tjA107F7gW21ImFN0XHTxPgruG2iNqr-8z99byBjji0";
         }else {
             return "Login fehlgeschlagen: falsche Username/Passwort Kombination  ";
         }
