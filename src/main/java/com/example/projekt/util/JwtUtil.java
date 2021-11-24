@@ -6,15 +6,16 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.projekt.model.Auth;
 
 public class JwtUtil {
 
     static Algorithm algorithm = Algorithm.HMAC256("VeryVerySecureSecretKeyForJwtTokenHashAndStuff");
 
-    public static String generateToken(String email){
+    public static String generateToken(Auth auth){
         try {
             String token = JWT.create()
-                    .withClaim("name", email)
+                    .withClaim("name", auth.getEmail())
                     .withIssuer("DrinkMarket")
                     .sign(algorithm);
             return token;
@@ -35,7 +36,7 @@ public class JwtUtil {
         } catch (JWTVerificationException exception){
             //Invalid signature/claims
         }
-        return "-1";
+        return "Authentifizierung fehlgeschlagen";
     }
 }
 

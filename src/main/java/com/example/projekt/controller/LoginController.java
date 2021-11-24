@@ -26,7 +26,8 @@ public class LoginController {
     public String checkLogin(@RequestBody Auth auth){
         String newHash = getSHA256(auth.getPassword());
 
-        String token = JwtUtil.generateToken(auth.getEmail());
+        String token = JwtUtil.generateToken(auth);
+
         //Todo: vglWert als Datenbankabfrage
         String vglWert = "7dfc0aa32bb5dda2a049f6bd0a3c3419e86b3d7622494c57030944d814233d03";
 

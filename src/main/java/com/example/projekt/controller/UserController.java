@@ -1,5 +1,6 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.model.Auth;
 import com.example.projekt.model.Product;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserRepository;
@@ -24,7 +25,7 @@ public class UserController {
 
     @GetMapping
     public @ResponseBody String authorize(){
-        return "Hi";
+        return "Use POST to create a new User, PUT to change an existing one and DELETE to delete one";
     }
 
     @PostMapping("/")
@@ -32,14 +33,14 @@ public class UserController {
     public String createUser(@RequestBody @Valid User user){
         String temp ;
         if (user != null){
+
             //Hash zum speichern des PW in der Datenbank
             temp = getSHA256(user.getPassword());
             user.setPassword(temp);
             userRepository.save(user);
+
             //JWT Token generieren
-            return JwtUtil.generateToken(user.getEmail());
-            //return temp;
-            //return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1heCBNdXN0ZXJtYW5uIiwiaWF0IjoxNjM4MDM5MDIyfQ.tjA107F7gW21ImFN0XHTxPgruG2iNqr-8z99byBjji0";
+            return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword()));
         }
         return "registration failed";
         //return userRepository.save(user);
