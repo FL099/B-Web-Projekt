@@ -39,4 +39,22 @@ public class LoginController {
         }
 
     }
+
+    @PostMapping("/test")
+    public String testCheckLogin(@RequestBody Auth auth){
+        String newHash = getSHA256(auth.getPassword());
+
+        String token = JwtUtil.generateToken(auth);
+
+        //zum testen statt DB Abfrage hashwert statt email
+        String vglWert = auth.getEmail();
+
+        if (isValid(vglWert, newHash)){
+            //return "Login erfolgreich \n eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1heCBNdXN0ZXJtYW5uIiwiaWF0IjoxNjM4MDM5MDIyfQ.tjA107F7gW21ImFN0XHTxPgruG2iNqr-8z99byBjji0";
+            return token;
+        }else {
+            return "Login fehlgeschlagen: falsche Username/Passwort Kombination  ";
+        }
+
+    }
 }
