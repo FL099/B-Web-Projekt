@@ -26,8 +26,13 @@ public class UserController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody @Valid User user){
-        return userRepository.save(user);
+    public String createUser(@RequestBody @Valid User user){
+        if (user != null){
+            userRepository.save(user);
+            return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1heCBNdXN0ZXJtYW5uIiwiaWF0IjoxNjM4MDM5MDIyfQ.tjA107F7gW21ImFN0XHTxPgruG2iNqr-8z99byBjji0";
+        }
+        return "registration failed";
+        //return userRepository.save(user);
     }
 
     @DeleteMapping("/{id}")
