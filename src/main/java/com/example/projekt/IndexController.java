@@ -22,12 +22,12 @@ public class IndexController {
         this.offerRepository = offerRepository;
     }
 
-    @GetMapping(produces = "raw/json")
+    @GetMapping()
     public @ResponseBody String index(){
         return "{\"Hint\": \"You can access offers with /offers , auctions with /auctions and Information about authentication with /auth \"}";
     }
 
-    @PostMapping(produces = "raw/json")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public String create(@RequestBody @Valid Offer offer){
         return "{\"Hint\": \"You can access offers with /offers , auctions with /auctions and Information about authentication with /auth \"}";
