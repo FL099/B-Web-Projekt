@@ -1,7 +1,6 @@
 package com.example.projekt.controller;
 
 import com.example.projekt.model.Auth;
-import com.example.projekt.model.Product;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserRepository;
 import com.example.projekt.util.JwtUtil;

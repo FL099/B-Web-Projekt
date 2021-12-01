@@ -1,7 +1,4 @@
 package com.example.projekt.model;
-
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
