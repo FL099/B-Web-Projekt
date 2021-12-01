@@ -39,7 +39,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String test2CheckLogin(@RequestBody Auth auth){
+    public String checkLogin(@RequestBody Auth auth){
         String newHash = getSHA256(auth.getPassword());
 
         String token = JwtUtil.generateToken(auth);
@@ -78,7 +78,7 @@ public class LoginController {
     }
 
     @PostMapping("/test")
-    public String checkLogin(@RequestBody Auth auth){
+    public String check2Login(@RequestBody Auth auth){
         String newHash = getSHA256(auth.getPassword());
 
         String token = JwtUtil.generateToken(auth);
