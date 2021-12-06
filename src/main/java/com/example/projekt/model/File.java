@@ -36,6 +36,14 @@ public class File {
         return new File(id, fileNameFromDatabase, mimeTypeFromDatabase);
     }
 
+    public File(){}
+
+    public File(String filename, String mimeType)
+    {
+        this.filename = filename;
+        this.mimeType = mimeType;
+    }
+
     public String getFileName()
     {
         return this.filename;
@@ -45,6 +53,12 @@ public class File {
     {
         return this.mimeType;
     }
-    
 
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
 }
