@@ -1,11 +1,7 @@
 package com.example.projekt.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,7 +15,7 @@ import com.example.projekt.repository.FileRepository;
 @RestController
 @RequestMapping("/file")
 public class FileController {
-    public static String uploadDirectory = System.getProperty("user.dir") + "/uplods";
+    public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads"; //"C:\\Users\\flori\\#fh\\5sem\\Bweb\\Projekt\\uploads\\" ;
     private FileRepository fileRepository;
 
     /**
@@ -29,6 +25,11 @@ public class FileController {
     public FileController(FileRepository fileRepository)
     {
         this.fileRepository = fileRepository;
+        try {
+            Files.createDirectories(Path.of(uploadDirectory).normalize());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -51,25 +52,41 @@ public class FileController {
      * @return
      */
     @RequestMapping("/upload")
+    @ResponseStatus(HttpStatus.CREATED)
     public String upload(@RequestParam("files") MultipartFile[] files)
     {
         StringBuilder fileNames = new StringBuilder();
+        fileNames.append("{");
+        Boolean first = true;
         for (MultipartFile file : files)
         {
+            if (!first){
+                fileNames.append(",\n");
+            }
+            else {first = false;}
             Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-            fileNames.append(file.getOriginalFilename());
-            try 
+            fileNames.append( "{\"file\": \"" + file.getOriginalFilename() + "\",\n");
+
+            try
             {
+                Boolean ex = Files.exists(fileNameAndPath);
+
                 Files.write(fileNameAndPath, file.getBytes());
+                if(ex){
+                    fileNames.append("\"action\" : \"overwritten\"");
+                }else {
+                    fileNames.append("\"action\" : \"created\"");
+                }
             }
             catch(IOException e) 
             {
                 e.printStackTrace();
             }
+            fileNames.append("}");
         }
-
+        fileNames.append("}");
         // TODO - respond with JSON
-        return "ich wäre gerne eine adequate antwort auf die anfrage";
+        return fileNames.toString() ;
     }
 
 }
