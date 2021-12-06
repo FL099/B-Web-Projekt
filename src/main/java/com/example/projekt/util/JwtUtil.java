@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class JwtUtil {
+    //https://github.com/auth0/java-jwt
 
     static Algorithm algorithm = Algorithm.HMAC256("VeryVerySecureSecretKeyForJwtTokenHashAndStuff");
 
