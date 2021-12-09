@@ -38,7 +38,6 @@ public class LoginController {
 
         String token = JwtUtil.generateToken(auth);
 
-
         User user = null;
 
         try {

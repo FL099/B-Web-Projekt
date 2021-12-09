@@ -18,7 +18,7 @@ import com.example.projekt.repository.FileRepository;
 @RestController
 @RequestMapping("/file")
 public class FileController {
-    public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads"; //"C:\\Users\\flori\\#fh\\5sem\\Bweb\\Projekt\\uploads\\" ;
+    public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads";
     private FileRepository fileRepository;
     public static final List<String> allowedTypes = Arrays.asList(
             "image/png", //

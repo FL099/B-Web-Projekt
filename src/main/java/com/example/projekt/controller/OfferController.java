@@ -3,7 +3,6 @@ package com.example.projekt.controller;
 import com.example.projekt.model.Offer;
 import com.example.projekt.repository.OfferRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +19,6 @@ public class OfferController {
 
     public OfferController(OfferRepository offerRepository){
         this.offerRepository = offerRepository;
-    }
-
-    @GetMapping
-    public @ResponseBody String index(){
-        return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there! </h1><hr/></div>";
     }
 
     @GetMapping("/{name}")

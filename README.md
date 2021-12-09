@@ -35,6 +35,11 @@ mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
   
  ## Sonstiges
 
+### Überlegungen:
+* bei Auctions: zusätzlicher "open/closed" Parameter, oder übers Datum?
+* Offers: Zuordnung zu Auctions über DB oder im Frontend über ID?
+* Files in Struktur speichern (Profilbilder getrennt von Icons usw)
+* Zugriffsverwaltung Files
 
 ## nützliche links
 [spring.io mysql guide](https://spring.io/guides/gs/accessing-data-mysql/)  

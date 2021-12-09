@@ -20,7 +20,7 @@ public class AuctionController {
 
     private AuctionRepository auctionRepository;
 
-    public AuctionController(OfferRepository offerRepository){
+    public AuctionController(AuctionRepository auctionRepository){
         this.auctionRepository = auctionRepository;
     }
 

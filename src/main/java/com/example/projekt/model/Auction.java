@@ -29,14 +29,22 @@ public class Auction {
     @NotNull(message = "amount muss vorhanden sein")
     private Integer amount;
 
+    // TODO: NotNull machen
+    private Integer creatorId;
+
     public Auction(String product, Integer amount){
         this.startTime = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(this.startTime);
         c.add(Calendar.MONTH, 1);
-        endTime = c.getTime();
+        this.endTime = c.getTime();
         this.product = product;
         this.amount = amount;
+    }
+
+    public Auction(String product, Integer amount, Integer creatorId){
+        this(product, amount);
+        this.creatorId = creatorId;
     }
 
     public Auction(Date startTime, Date endTime, String product, Integer amount){
@@ -83,10 +91,18 @@ public class Auction {
     }
 
     public Integer getAmount() {
-        return (amount == null)? amount: 0;
+        return (amount != null)? amount: 0;
     }
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Integer getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(Integer cid) {
+        creatorId = cid;
     }
 }
