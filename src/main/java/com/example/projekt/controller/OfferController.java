@@ -32,12 +32,30 @@ public class OfferController {
         return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there " + name + "!</h1><hr/></div>";
     }
 
-    @GetMapping("/{id}") //die ID der Auktion
-    public List<Offer> getAssociatedOffers(@PathVariable("id") String aId){
-        Integer Id = 11;//Integer.parseInt(aId);
+    @GetMapping("/byAuction/{id}") //die ID der Auktion
+    public List<Offer> getAAssociatedOffers(@PathVariable("id") String aId){
+        Integer Id = Integer.parseInt(aId);
         List<Offer> associatedOffers = Arrays.asList();
-        associatedOffers = offerRepository.findOffersByAuct(Id);//findByPriceContaining(aId);
+        associatedOffers = offerRepository.findOffersByAuctionId(Id);//findByPriceContaining(aId);
         return associatedOffers;
+    }
+
+    @GetMapping("/byUser/{id}") //die ID des Users
+    public List<Offer> getUAssociatedOffers(@PathVariable("id") String uId){
+        Integer Id = Integer.parseInt(uId);
+        List<Offer> associatedOffers = Arrays.asList();
+        associatedOffers = offerRepository.findOffersByCreatorId(Id);
+        return associatedOffers;
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Boolean changeAccepted(@RequestParam("offer") Integer offerId, @RequestParam("accepted") Boolean accepted){
+        Offer offer = new Offer();//offerRepository.findOfferById(offerId);
+        offer.setAccepted(accepted);
+        //TODO!!!
+        //TODO 2: eleganter als mit Params lösen
+        return accepted;
     }
 
     @PostMapping("/")

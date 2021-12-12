@@ -30,16 +30,18 @@ mysql> revoke all on projekt.* from 'projektuser'@'%';
 ```
 Notwendige Rechte wieder hinzufügen
 ```
-mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
+mysql> grant select, insert, delete, update on db_example.* to 'projektuser'@'%';
 ```
   
  ## Sonstiges
 
-### Überlegungen:
+### Überlegungen: 
 * bei Auctions: zusätzlicher "open/closed" Parameter, oder übers Datum?
-* Offers: Zuordnung zu Auctions über DB oder im Frontend über ID?
+* ~~Offers: Zuordnung zu Auctions über DB oder im Frontend über ID?~~
 * Files in Struktur speichern (Profilbilder getrennt von Icons usw)
 * Zugriffsverwaltung Files
+* Ersatz für userId (bei Offers, Auktionen usw)-> Sicherheit
+
 
 ## nützliche links
 [spring.io mysql guide](https://spring.io/guides/gs/accessing-data-mysql/)  

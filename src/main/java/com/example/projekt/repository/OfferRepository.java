@@ -6,7 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface OfferRepository extends CrudRepository<Offer, Integer> {
-    List<Offer> findOffersByAuct(Integer auctionId);
+    List<Offer> findOffersByAuctionId(Integer auctionId);
+    List<Offer> findOffersByCreatorId(Integer creatorId);
+    //Offer findOfferById(Integer Id);
 }
 
 
