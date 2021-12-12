@@ -1,6 +1,8 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.exceptions.Exceptionhandler;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.example.projekt.model.File;
@@ -18,6 +21,8 @@ import com.example.projekt.repository.FileRepository;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+    private Exceptionhandler exHandler;
+
     public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads";
     private FileRepository fileRepository;
     public static final List<String> allowedTypes = Arrays.asList(
@@ -117,6 +122,12 @@ public class FileController {
         fileNames.append("}");
         // Liefert gültiges JSON,
         return fileNames.toString() ;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return exHandler.handleGeneralExceptions(ex);
     }
 
 }

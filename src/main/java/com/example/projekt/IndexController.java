@@ -1,5 +1,6 @@
 package com.example.projekt;
 
+import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.model.Offer;
 import com.example.projekt.repository.OfferRepository;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class IndexController {
 
     private OfferRepository offerRepository;
+    private Exceptionhandler exHandler;
 
     public IndexController(OfferRepository offerRepository){
         this.offerRepository = offerRepository;
@@ -36,12 +38,6 @@ public class IndexController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
+        return exHandler.handleGeneralExceptions(ex);
     }
 }

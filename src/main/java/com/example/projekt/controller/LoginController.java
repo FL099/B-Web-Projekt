@@ -1,12 +1,17 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.model.Auth;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserRepository;
 import com.example.projekt.util.JwtUtil;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 
+
+import java.util.Map;
 
 import static com.example.projekt.util.crypt.getSHA256;
 import static com.example.projekt.util.crypt.isValid;
@@ -87,5 +92,10 @@ public class LoginController {
 
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return Exceptionhandler.handleGeneralExceptions(ex);
+    }
 
 }

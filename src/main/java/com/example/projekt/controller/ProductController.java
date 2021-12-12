@@ -1,5 +1,6 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.model.Product;
 import com.example.projekt.repository.ProductRepository;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.Map;
 public class ProductController {
 
     private ProductRepository productRepository;
+    private Exceptionhandler exHandler;
 
     public ProductController(ProductRepository productRepository){
         this.productRepository = productRepository;
@@ -42,12 +44,6 @@ public class ProductController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
+        return exHandler.handleGeneralExceptions(ex);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.model.Auction;
-import com.example.projekt.model.Offer;
 import com.example.projekt.repository.AuctionRepository;
 import com.example.projekt.repository.OfferRepository;
 import org.springframework.http.HttpStatus;
@@ -45,12 +45,6 @@ public class AuctionController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
+        return Exceptionhandler.handleGeneralExceptions(ex);
     }
 }

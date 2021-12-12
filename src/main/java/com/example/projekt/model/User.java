@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import com.example.projekt.util.Role;
 
 @Entity
 public class User {
@@ -30,6 +31,8 @@ public class User {
 
     private String address;
 
+    private Role roles;
+
     public User(String firstName, String lastName, String email, String password){
         this(firstName, lastName, email, password, null, null);
     }
@@ -44,7 +47,7 @@ public class User {
     }
 
     public User(){
-
+        this.roles = Role.VENDOR;
     }
 
     public String getFirstName() {
@@ -101,5 +104,13 @@ public class User {
 
     public void setId(Integer id) {
         Id = id;
+    }
+
+    public Role getRole() {
+        return roles;
+    }
+
+    public void setRole(Role role) {
+        roles = role;
     }
 }

@@ -1,13 +1,17 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.model.Auth;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserRepository;
 import com.example.projekt.util.JwtUtil;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.Map;
 
 import static com.example.projekt.util.crypt.getSHA256;
 
@@ -16,6 +20,7 @@ import static com.example.projekt.util.crypt.getSHA256;
 public class UserController {
 
     private UserRepository userRepository;
+    private Exceptionhandler exHandler;
 
     public UserController(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -49,5 +54,11 @@ public class UserController {
     public User deleteUser(@PathVariable("id") User user){
         userRepository.delete(user);
         return user;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return exHandler.handleGeneralExceptions(ex);
     }
 }

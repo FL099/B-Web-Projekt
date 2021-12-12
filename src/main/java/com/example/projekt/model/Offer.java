@@ -28,8 +28,9 @@ public class Offer {
     @NotNull( message = "deliveryDate ist notwendig")
     private Date deliveryDate;
 
-    //TODO: auskommentieren, wenns keine Probleme macht: @NotNull( message = "Offer muss einer Auktion zugeordnet sein")
-    private Integer auctionId;
+    //TODO: auskommentieren, wenns keine Probleme macht:
+    @NotNull( message = "Offer muss einer Auktion zugeordnet sein")
+    private Integer auct; //TODO: wieder in auctionId umbenennen und int machen
 
     //TODO: auskommentieren, wenns keine Probleme macht: @NotNull( message = "Offer muss einem Ersteller zugeordnet sein")
     private Integer creatorId;
@@ -70,12 +71,12 @@ public class Offer {
         this.deliveryDate = deliveryDate;
     }
 
-    public Integer getAuctionId() {
-        return auctionId;
+    public Integer getAuct() {
+        return auct;
     }
 
-    public void setAuctionId(Integer auctionId) {
-        this.auctionId = auctionId;
+    public void setAuct(Integer auct) {
+        this.auct = auct;
     }
 
     public Offer(int amount, int price){
@@ -84,10 +85,10 @@ public class Offer {
         this.deliveryDate = new Date();
     }
 
-    public Offer(int amount, int price, int auctionId){
+    /*public Offer(int amount, int price, String auctionId){
         this(amount, price);
-        this.auctionId = auctionId;
-    }
+        this.auctionnum = auctionId;
+    }*/
 
     public Offer(int amount, int price, String deliveryDate){
         this.amount = amount;
