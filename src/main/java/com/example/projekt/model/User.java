@@ -1,8 +1,5 @@
 package com.example.projekt.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import com.example.projekt.util.Role;
@@ -20,8 +17,9 @@ public class User {
     @NotNull(message = "Nachname darf nicht leer sein")
     private String lastName;
 
-    @NotNull(message = "Email darf nicht leer sein")
+    @Column(name = "email", nullable = false, unique = true)
     @Email(message = "ungültiges Email Format")
+    @NotNull(message = "Email darf nicht leer sein")
     private String email;
 
     @NotNull(message = "Passwort darf nicht leer sein")

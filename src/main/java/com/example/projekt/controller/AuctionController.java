@@ -26,7 +26,7 @@ public class AuctionController {
 
     @GetMapping(produces = "raw/json")
     public @ResponseBody Auction index(){
-        return new Auction("product", 2);
+        return new Auction("product", 2);   //TODO
         //return "{\"startTime\":\"dd/mm/yyyy\",\"endTime\":\"dd/mm/yyyy\",\"product\":\"Product name\",\"amount\": 5}";
     }
 

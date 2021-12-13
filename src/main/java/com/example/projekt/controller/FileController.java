@@ -21,7 +21,6 @@ import com.example.projekt.repository.FileRepository;
 @RestController
 @RequestMapping("/file")
 public class FileController {
-    private Exceptionhandler exHandler;
 
     public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads";
     private FileRepository fileRepository;
@@ -63,7 +62,7 @@ public class FileController {
     @GetMapping("/{id}")
     public @ResponseBody File index(@PathVariable("id") Integer id) {
          File file = fileRepository.findById(id).orElse(new File());
-         file.setFilename(uploadDirectory + file.getFileName());    // Braucht keine extra Klasse (evtl noch adaptieren, so liefert es den absoluten Pfad)
+         file.setFilename(uploadDirectory + "\\"+ file.getFileName());    // Braucht keine extra Klasse (evtl noch adaptieren, so liefert es den absoluten Pfad)
          return file;
         //return File.loadFromDB(id);
     }
@@ -127,7 +126,7 @@ public class FileController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        return exHandler.handleGeneralExceptions(ex);
+        return Exceptionhandler.handleGeneralExceptions(ex);
     }
 
 }

@@ -33,14 +33,15 @@ Notwendige Rechte wieder hinzufügen
 mysql> grant select, insert, delete, update on db_example.* to 'projektuser'@'%';
 ```
   
- ## Sonstiges
+## Sonstiges
 
 ### Überlegungen: 
 * bei Auctions: zusätzlicher "open/closed" Parameter, oder übers Datum?
 * ~~Offers: Zuordnung zu Auctions über DB oder im Frontend über ID?~~
 * Files in Struktur speichern (Profilbilder getrennt von Icons usw)
 * Zugriffsverwaltung Files
-* Ersatz für userId (bei Offers, Auktionen usw)-> Sicherheit
+* Ersatz für _userId_ (bei Offers, Auktionen usw)-> Sicherheit
+* __Tests!!__
 
 
 ## nützliche links

@@ -20,7 +20,6 @@ import static com.example.projekt.util.crypt.getSHA256;
 public class UserController {
 
     private UserRepository userRepository;
-    private Exceptionhandler exHandler;
 
     public UserController(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -41,7 +40,11 @@ public class UserController {
             //Hash zum speichern des PW in der Datenbank
             temp = getSHA256(user.getPassword());
             user.setPassword(temp);
-            userRepository.save(user);
+            try{
+                userRepository.save(user);
+            }catch (Exception e){   //TODO: nur eigentliche Exception behandeln: java.sql.SQLIntegrityConstraintViolationException
+                return "Erstellen fehlgeschlagen";
+            }
 
             //JWT Token generieren
             return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword())) + "\n" + temp;
@@ -59,6 +62,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        return exHandler.handleGeneralExceptions(ex);
+        return Exceptionhandler.handleGeneralExceptions(ex);
     }
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 public class Offer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //TODO: Anpassen, so dass nicht alle ids erhöht werden
     private Integer Id;
 
     @NotNull( message = "amount ist notwendig")
