@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "d1d1440b-cd53-457c-b7f1-317ffc0e7dac",
+		"name": "BWeb-Projekt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/auctions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/auctions",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auctions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/auctions/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\": \"Fanta\",\r\n    \"amount\" : 15,\r\n    \"creatorId\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/auctions/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auctions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/user/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"Flo\",\r\n    \"lastName\":\"Six\",\r\n    \"email\":\"flo@six.at\",\r\n    \"password\":\"Howdy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/user/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Florian\",\r\n    \"lastName\" : \"Sixtl\",\r\n    \"email\" : \"flo@six.au\",\r\n    \"password\" : \"pass1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/offers/byUser/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/offers/byUser/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"offers",
+						"byUser",
+						"2"
+					]
+				},
+				"description": "GET Test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/offers/byAuction/11",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/offers/byAuction/11",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"offers",
+						"byAuction",
+						"11"
+					]
+				},
+				"description": "GET Test mit Wert"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/offers/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 6,\r\n    \"price\": 91,\r\n    \"deliveryDate\": \"2020-11-02T20:23:01Z\",\r\n    \"auctionId\": 11,\r\n    \"creatorId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/offers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"offers",
+						""
+					]
+				},
+				"description": "POST Test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/offers/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/offers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"offers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/offers?offer=1&accepted=true",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"offer\": 1,\r\n    \"accepted\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/offers?offer=1&accepted=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"offers"
+					],
+					"query": [
+						{
+							"key": "offer",
+							"value": "1"
+						},
+						{
+							"key": "accepted",
+							"value": "true"
+						}
+					]
+				},
+				"description": "DELETE Test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/products/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"testprodukt1\",\r\n    \"contents\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/products/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/products/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"flo@six.at\",\r\n    \"password\" : \"Howdy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "howd1",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "werw",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/auth/check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiZmxvQHNpeC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjM4OTgwNjA2fQ.ZlQxaSqG7U00cZVrU4UTdKWuFgYcXV96z7lpfJRZfnw",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/auth/check",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"check"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiZmxvIiwiaXNzIjoiYXV0aDAifQ.75nrnttm2MafzLZUS-SghwOaizvVbZsJFIZkPAUubzU",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/auth/test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"flo@sizx.at\",\r\n    \"password\" : \"Howdy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/auth/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"test"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "howd1",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "werw",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/file/upload",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "files",
+						"value": "file1.png",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"contentType": "image/png",
+							"type": "file",
+							"src": "/C:/Users/flori/OneDrive/Pictures/Bild1.png"
+						},
+						{
+							"key": "files",
+							"contentType": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8081/file/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"file",
+						"upload"
+					],
+					"query": [
+						{
+							"key": "files",
+							"value": "file1.png",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/file/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/file/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"file",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
