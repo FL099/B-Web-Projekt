@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,7 +23,17 @@ public class ProductController {
 
     @GetMapping(produces = "raw/json")
     public @ResponseBody Product index(){
+        //TODO
         return new Product("product", 2, "Non-alk");
+    }
+
+    @GetMapping("/all/")
+    public List<Product> returnProducts(){
+        try{return (List<Product>) productRepository.findAll();}
+        catch (Exception e){
+            return null;
+        }
+
     }
 
     @PostMapping

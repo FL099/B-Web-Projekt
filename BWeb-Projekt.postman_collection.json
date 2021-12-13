@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8081/auctions",
+			"name": "Wie Auction Aussehen muss",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -24,7 +24,81 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/auctions/",
+			"name": "/user abfragen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"Max\",\r\n    \"lastName\":\"Mustermann\",\r\n    \"email\":\"m-mus@test.at\",\r\n    \"password\":\"MusterPW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User 2 erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Test\",\r\n    \"lastName\" : \"User\",\r\n    \"email\" : \"testuser@test.at\",\r\n    \"password\" : \"pass1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auction erstellen",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -52,123 +126,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/user",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/user",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8081/user/",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstName\":\"Flo\",\r\n    \"lastName\":\"Six\",\r\n    \"email\":\"flo@six.at\",\r\n    \"password\":\"Howdy\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8081/user/",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"user",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8081/user/",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstName\" : \"Florian\",\r\n    \"lastName\" : \"Sixtl\",\r\n    \"email\" : \"flo@six.au\",\r\n    \"password\" : \"pass1234\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8081/user/",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"user",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8081/offers/byUser/2",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/offers/byUser/2",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"offers",
-						"byUser",
-						"2"
-					]
-				},
-				"description": "GET Test"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8081/offers/byAuction/11",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/offers/byAuction/11",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"offers",
-						"byAuction",
-						"11"
-					]
-				},
-				"description": "GET Test mit Wert"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8081/offers/",
+			"name": "Offer erstellen",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -197,32 +155,55 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/offers/1",
+			"name": "Alle Offer für User abfragen",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/offers/1",
+					"raw": "localhost:8081/offers/byUser/2",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
 						"offers",
-						"1"
+						"byUser",
+						"2"
 					]
-				}
+				},
+				"description": "GET Test"
 			},
 			"response": []
 		},
 		{
-			"name": "localhost:8081/offers?offer=1&accepted=true",
+			"name": "Alle Offer für Auktion abfragen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/offers/byAuction/11",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"offers",
+						"byAuction",
+						"11"
+					]
+				},
+				"description": "GET Test mit Wert"
+			},
+			"response": []
+		},
+		{
+			"name": "Offer akzeptieren",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"offer\": 1,\r\n    \"accepted\": true\r\n}",
+					"raw": "{\r\n    \"offer\": 6,\r\n    \"accepted\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -230,7 +211,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/offers?offer=1&accepted=true",
+					"raw": "localhost:8081/offers?offer=6&accepted=true",
 					"host": [
 						"localhost"
 					],
@@ -241,7 +222,7 @@
 					"query": [
 						{
 							"key": "offer",
-							"value": "1"
+							"value": "6"
 						},
 						{
 							"key": "accepted",
@@ -254,25 +235,26 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/products",
+			"name": "Offer löschen",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/products",
+					"raw": "localhost:8081/offers/12",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
-						"products"
+						"offers",
+						"12"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "localhost:8081/products/",
+			"name": "Product erstellen",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -299,32 +281,52 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/products/1",
+			"name": "Alle Produkte",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/products/1",
+					"raw": "localhost:8081/products/all/",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
 						"products",
-						"1"
+						"all",
+						""
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "localhost:8081/auth",
+			"name": "Product löschen",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/products/15",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorisieren (Token erhalten)",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\" : \"flo@six.at\",\r\n    \"password\" : \"Howdy\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"testuser@test.at\",\r\n    \"password\" : \"pass1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -357,13 +359,13 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/auth/check",
+			"name": "Tokeninhalt abfragen",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiZmxvQHNpeC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjM4OTgwNjA2fQ.ZlQxaSqG7U00cZVrU4UTdKWuFgYcXV96z7lpfJRZfnw",
+					"raw": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdHVzZXJAdGVzdC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjM5MzU4OTQwfQ.nj8SRhF1Iqq0arIbAgCTdPiTGliQw5nEg3chMTl81Vk",
 					"options": {
 						"raw": {
 							"language": "text"
@@ -392,7 +394,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/auth/test",
+			"name": "Tokeninhalt abfragen Test",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -432,19 +434,13 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/file/upload",
+			"name": "File upload",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "files",
-						"value": "file1.png",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -472,32 +468,25 @@
 					"path": [
 						"file",
 						"upload"
-					],
-					"query": [
-						{
-							"key": "files",
-							"value": "file1.png",
-							"disabled": true
-						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "localhost:8081/file/1",
+			"name": "File laden",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/file/1",
+					"raw": "localhost:8081/file/16",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
 						"file",
-						"1"
+						"16"
 					]
 				}
 			},

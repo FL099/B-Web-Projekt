@@ -45,7 +45,7 @@ public class User {
     }
 
     public User(){
-        this.roles = Role.VENDOR;
+        this.roles = Role.USER;
     }
 
     public String getFirstName() {

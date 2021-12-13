@@ -41,6 +41,7 @@ mysql> grant select, insert, delete, update on db_example.* to 'projektuser'@'%'
 * Files in Struktur speichern (Profilbilder getrennt von Icons usw)
 * Zugriffsverwaltung Files
 * Ersatz für _userId_ (bei Offers, Auktionen usw)-> Sicherheit
+* Individueller ID-Counter pro Table
 * __Tests!!__
 
 
