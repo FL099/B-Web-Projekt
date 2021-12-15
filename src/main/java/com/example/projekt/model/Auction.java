@@ -1,5 +1,8 @@
 package com.example.projekt.model;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +15,9 @@ import java.util.Date;
 @Entity
 public class Auction {
 
-    //TODO: "product" von String auf Product-Klasse ändern
+    /***
+     * TODO: ALLE Änderungen in Dto übernehmen
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +29,7 @@ public class Auction {
 
     @NotNull(message = "product muss vorhanden sein")
     private String product;
+    //TODO: "product" von String auf Product-Klasse ändern
 
     @Positive(message = "amount muss >0 sein")
     @NotNull(message = "amount muss vorhanden sein")
@@ -103,8 +109,16 @@ public class Auction {
         return (minAmount != null)? minAmount : 0;
     }
 
-    public void setMinAmount(Integer amount) {
-        this.minAmount = amount;
+    public void setMinAmount(Integer minAmount) {
+        this.minAmount = minAmount;
+    }
+
+    public Integer getMaxAmount() {
+        return (maxAmount != null)? maxAmount : 0;
+    }
+
+    public void setMaxAmount(Integer maxAmount) {
+        this.maxAmount = maxAmount;
     }
 
     public Integer getCreatorId() {
@@ -113,5 +127,55 @@ public class Auction {
 
     public void setCreatorId(Integer cid) {
         creatorId = cid;
+    }
+
+    public Integer getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(Integer minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public Integer getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(Integer maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public Date getMinDelDate() {
+        return minDelDate;
+    }
+
+    public void setMinDelDate(Date minDelDate) {
+        this.minDelDate = minDelDate;
+    }
+
+    public Date getMaxDelDate() {
+        return maxDelDate;
+    }
+
+    public void setMaxDelDate(Date maxDelDate) {
+        this.maxDelDate = maxDelDate;
+    }
+
+    public void throwIfOutsideRanges(final Offer offer) throws ResponseStatusException {
+        // check amount range
+        if (offer.getAmount() < getMinAmount() || offer.getAmount() > getMaxAmount()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Amount outside of range");
+        }
+
+        // check price range
+        if (offer.getPrice() < getMinPrice() || offer.getPrice() > getMaxPrice()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Price outside of range");
+        }
+
+        // check delivery data
+        if (offer.getDeliveryDate().before(getMinDelDate()) ||
+                offer.getDeliveryDate().after(getMaxDelDate())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Delivery date outside of range");
+        }
     }
 }

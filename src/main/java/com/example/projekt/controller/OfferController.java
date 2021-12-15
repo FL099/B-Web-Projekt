@@ -1,12 +1,16 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.dto.OfferDto;
 import com.example.projekt.model.Offer;
 import com.example.projekt.repository.OfferRepository;
 import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.util.State;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -19,6 +23,7 @@ import java.util.Map;
 @RequestMapping("/offers")
 public class OfferController {
 
+    private final ModelMapper modelMapper = new ModelMapper();
     private OfferRepository offerRepository;
 
     public OfferController(OfferRepository offerRepository){
@@ -26,8 +31,14 @@ public class OfferController {
     }
 
     @GetMapping
-    public @ResponseBody String method2(){
-        return "<div style=\"font-family: sans-serif; color: darkblue;\"><h1>Hi there!</h1><hr/></div>";
+    public Iterable<OfferDto> getOffers() {
+        return modelMapper.map(offerRepository.findAll(),
+                new TypeToken<List<OfferDto>>(){}.getType());
+    }
+
+    @GetMapping("/{id}")
+    public OfferDto getOffer(@PathVariable Integer id) {
+        return modelMapper.map(getOfferFromRepoOrThrow(id), OfferDto.class);
     }
 
     @GetMapping("/byAuction/{id}") //die ID der Auktion
@@ -56,22 +67,41 @@ public class OfferController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public State changeAccepted(@RequestParam("offer") Integer offerId, @RequestParam("state") int state){
         Offer offer = offerRepository.findById(offerId).orElse(new Offer());
-        offer.setAccepted(State.values()[state]);
+        offer.setState(State.values()[state]);
         offerRepository.save(offer);
         //TODO: eleganter als mit Params lösen
         return State.values()[state];
     }
 
-    @PostMapping("/")
+    @PutMapping("/{id}")
+    public OfferDto updateOffer(@RequestBody @Valid OfferDto offerDto, @PathVariable Integer id) {
+        Offer existingOffer = getOfferFromRepoOrThrow(id);
+
+        Offer offer = modelMapper.map(offerDto, Offer.class);
+
+        // check ranges (amount, price, ...)
+        //existingOffer.getAuctionId().throwIfOutsideRanges(offer);
+
+        // the following properties must not be updated
+        offer.setId(existingOffer.getId());
+        offer.setCreatorId(existingOffer.getCreatorId());
+        offer.setAuctionId(existingOffer.getAuctionId());
+        offerRepository.save(offer);
+
+        return modelMapper.map(offer, OfferDto.class);
+    }
+
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Offer create(@RequestBody @Valid Offer offer){
         return offerRepository.save(offer);
     }
 
     @DeleteMapping("/{id}")
-    public Offer deleteOffer(@PathVariable("id") Offer offer){
-        offerRepository.delete(offer);
-        return offer;
+    public OfferDto deleteOffer(@PathVariable("id") Integer id){
+        OfferDto existingOfferDto = getOffer(id);
+        offerRepository.deleteById(id);
+        return existingOfferDto;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -80,5 +110,9 @@ public class OfferController {
         return Exceptionhandler.handleGeneralExceptions(ex);
     }
 
+    private Offer getOfferFromRepoOrThrow(Integer id) {
+        return offerRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 
 }

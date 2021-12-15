@@ -19,6 +19,9 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO) //TODO: Anpassen, so dass nicht alle ids erhöht werden
     private Integer Id;
 
+    @NotNull( message = "Offer muss einer Auktion zugeordnet sein")
+    private Integer auctionId;
+
     @NotNull( message = "amount ist notwendig")
     @Positive( message = "amount muss positiv sein")
     private int amount;
@@ -29,9 +32,6 @@ public class Offer {
 
     @NotNull( message = "deliveryDate ist notwendig")
     private Date deliveryDate;
-
-    @NotNull( message = "Offer muss einer Auktion zugeordnet sein")
-    private Integer auctionId;
 
     @NotNull( message = "Offer muss einem Ersteller zugeordnet sein")
     private Integer creatorId;
@@ -66,8 +66,8 @@ public class Offer {
         this.price = price;
     }
 
-    public String getDeliveryDate() {
-        return deliveryDate.toString();
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
     public void setDeliveryDate(Date deliveryDate) {
@@ -90,11 +90,11 @@ public class Offer {
         this.creatorId = creatorId;
     }
 
-    public State getAccepted() {
+    public State getState() {
         return state;
     }
 
-    public void setAccepted(State state) {
+    public void setState(State state) {
         this.state = state;
     }
 
