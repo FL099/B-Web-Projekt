@@ -27,31 +27,40 @@ public class Auction {
 
     @Positive(message = "amount muss >0 sein")
     @NotNull(message = "amount muss vorhanden sein")
-    private Integer amount;
+    private Integer minAmount;
+
+    private Integer maxAmount;
+
+    private Integer minPrice;
+    private Integer maxPrice;
+
+    private Date minDelDate;
+    private Date maxDelDate;
+
 
     // TODO: NotNull machen
     private Integer creatorId;
 
-    public Auction(String product, Integer amount){
+    public Auction(String product, Integer minAmount){
         this.startTime = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(this.startTime);
         c.add(Calendar.MONTH, 1);
         this.endTime = c.getTime();
         this.product = product;
-        this.amount = amount;
+        this.minAmount = minAmount;
     }
 
-    public Auction(String product, Integer amount, Integer creatorId){
-        this(product, amount);
+    public Auction(String product, Integer minAmount, Integer creatorId){
+        this(product, minAmount);
         this.creatorId = creatorId;
     }
 
-    public Auction(Date startTime, Date endTime, String product, Integer amount){
+    public Auction(Date startTime, Date endTime, String product, Integer minAmount){
         this.startTime = startTime;
         this.endTime = endTime;
         this.product = product;
-        this.amount = amount;
+        this.minAmount = minAmount;
     }
 
     public Auction(){
@@ -90,12 +99,12 @@ public class Auction {
         this.product = product;
     }
 
-    public Integer getAmount() {
-        return (amount != null)? amount: 0;
+    public Integer getMinAmount() {
+        return (minAmount != null)? minAmount : 0;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setMinAmount(Integer amount) {
+        this.minAmount = amount;
     }
 
     public Integer getCreatorId() {

@@ -20,6 +20,10 @@ public class Product {
     @Size(min = 2, max = 25)
     private String name;
 
+    private String productpic;  //TODO: evtl zu "URL" typ statt String machen
+
+    private String description;
+
     @Positive(message = "contents muss >0 sein (in Liter)")
     private Integer contents;
 
@@ -71,5 +75,21 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getProductpic() {
+        return productpic;
+    }
+
+    public void setProductpic(String productpic) {
+        this.productpic = productpic;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.projekt.model;
 
+import com.example.projekt.util.State;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,10 +36,10 @@ public class Offer {
     @NotNull( message = "Offer muss einem Ersteller zugeordnet sein")
     private Integer creatorId;
 
-    private Boolean accepted;
+    private State state;
 
     public Offer(){
-        accepted = false;
+        state = State.OPEN;
     }
 
     public Integer getId() {
@@ -88,12 +90,12 @@ public class Offer {
         this.creatorId = creatorId;
     }
 
-    public Boolean getAccepted() {
-        return accepted;
+    public State getAccepted() {
+        return state;
     }
 
-    public void setAccepted(Boolean accepted) {
-        this.accepted = accepted;
+    public void setAccepted(State state) {
+        this.state = state;
     }
 
     public Offer(int amount, int price){

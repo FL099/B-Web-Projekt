@@ -26,9 +26,13 @@ public class UserController {
     }
 
 
-    @GetMapping
-    public @ResponseBody String authorize(){
-        return "Use POST to create a new User, PUT to change an existing one and DELETE to delete one";
+    @GetMapping("/{mail}")
+    public @ResponseBody Boolean isEmailAvailable(@PathVariable("mail") String email){
+        if(!userRepository.findByEmailContaining(email).isEmpty()){
+            return true;
+        }
+        return false;
+        //TODO: falls besser: false wenns nicht verfügbar ist, true wenn schon
     }
 
     @PostMapping("/")

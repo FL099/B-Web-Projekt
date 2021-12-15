@@ -3,6 +3,7 @@ package com.example.projekt.controller;
 import com.example.projekt.model.Offer;
 import com.example.projekt.repository.OfferRepository;
 import com.example.projekt.exceptions.Exceptionhandler;
+import com.example.projekt.util.State;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -53,12 +54,12 @@ public class OfferController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Boolean changeAccepted(@RequestParam("offer") Integer offerId, @RequestParam("accepted") Boolean accepted){
+    public State changeAccepted(@RequestParam("offer") Integer offerId, @RequestParam("state") int state){
         Offer offer = offerRepository.findById(offerId).orElse(new Offer());
-        offer.setAccepted(accepted);
+        offer.setAccepted(State.values()[state]);
         offerRepository.save(offer);
         //TODO: eleganter als mit Params lösen
-        return accepted;
+        return State.values()[state];
     }
 
     @PostMapping("/")

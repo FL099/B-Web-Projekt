@@ -29,7 +29,11 @@ public class User {
 
     private String address;
 
+    private Boolean locked;
+
     private Role roles;
+
+    private String profilepic;  //Evt zu URL machen, relative URL vom uploads oder Pics Ordner aus
 
     public User(String firstName, String lastName, String email, String password){
         this(firstName, lastName, email, password, null, null);
@@ -45,7 +49,9 @@ public class User {
     }
 
     public User(){
+
         this.roles = Role.USER;
+        this.profilepic = "avatar.png";
     }
 
     public String getFirstName() {
@@ -110,5 +116,21 @@ public class User {
 
     public void setRole(Role role) {
         roles = role;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getProfilepic() {
+        return profilepic;
+    }
+
+    public void setProfilepic(String profilepic) {
+        this.profilepic = profilepic;
     }
 }
