@@ -1,29 +1,23 @@
 package com.example.projekt.controller;
 
 import com.example.projekt.exceptions.Exceptionhandler;
+import com.example.projekt.interfaces.IFileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.example.projekt.model.File;
-import com.example.projekt.repository.FileRepository;
 
 @RestController
 @RequestMapping("/file")
 public class FileController {
 
-    public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads";
-    private FileRepository fileRepository;
+    private final IFileService fileService;
     public static final List<String> allowedTypes = Arrays.asList(
             "image/png", //
             "image/jpeg", //
@@ -34,20 +28,11 @@ public class FileController {
 
     /**
      * Constructor
-     * @param fileRepository
      */
-    public FileController(FileRepository fileRepository)
+    public FileController(IFileService fileService)
     {
-        this.fileRepository = fileRepository;
+        this.fileService = fileService;
 
-        /**
-         *WICHTIG!: Sonst kommts immer zu Errors, wenns neu gestartet wird
-         */
-        try {
-            Files.createDirectories(Path.of(uploadDirectory).normalize());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -57,14 +42,11 @@ public class FileController {
      * Best Case wäre wenn die Files in andere Klassen eingebunden werden, sowie User implements Image Extends File... 
      * Es macht wenig sinn dem User die ID für eine File zu schicken, anstelle davon ihm direkt den Filepath zu schicken.
      * @param id
-     * @return
+     * @return file Link
      */
     @GetMapping("/{id}")
     public @ResponseBody File index(@PathVariable("id") Integer id) {
-         File file = fileRepository.findById(id).orElse(new File());
-         file.setFilename(uploadDirectory + "\\"+ file.getFileName());    // Braucht keine extra Klasse (evtl noch adaptieren, so liefert es den absoluten Pfad)
-         return file;
-        //return File.loadFromDB(id);
+         return fileService.getFile(id);
     }
 
   
@@ -81,46 +63,7 @@ public class FileController {
     @ResponseStatus(HttpStatus.CREATED)
     public String upload(@RequestParam("files") MultipartFile[] files)
     {
-        StringBuilder fileNames = new StringBuilder();
-        fileNames.append("{");
-        Boolean first = true;
-        for (MultipartFile file : files)
-        {
-            if (!first){
-                fileNames.append(",\n");
-            }
-            else {first = false;}
-
-            // TODO: User-path, resourcen-path
-            Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-
-            fileNames.append( "{\"file\": \"" + file.getOriginalFilename() + "\",\n");
-            String type = file.getContentType();
-            if (allowedTypes.contains(type)) {
-                try {
-                    Boolean ex = Files.exists(fileNameAndPath); //Reihenfolge wichtig
-
-                    //speichert File mit neuer Id in DB
-                    fileRepository.save(new File(file.getOriginalFilename(), type));
-
-                    Files.write(fileNameAndPath, file.getBytes());
-                    if (ex) {
-                        fileNames.append("\"action\" : \"overwritten\"");
-                    } else {
-                        fileNames.append("\"action\" : \"created\"");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    fileNames.append("\"error\": \"Error while saving file\"");
-                }
-            }else{
-                fileNames.append("\"error\": \"File format not allowed\"");
-            }
-            fileNames.append("}");
-        }
-        fileNames.append("}");
-        // Liefert gültiges JSON,
-        return fileNames.toString() ;
+        return fileService.upload(files, allowedTypes);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
