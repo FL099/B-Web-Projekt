@@ -2,7 +2,7 @@ package com.example.projekt.interfaces;
 
 import com.example.projekt.dto.AuctionDto;
 import com.example.projekt.dto.OfferDto;
-import com.example.projekt.model.Auction;
+import com.example.projekt.data.model.Auction;
 
 public interface IAuctionService {
     Iterable<AuctionDto> getAuctions();

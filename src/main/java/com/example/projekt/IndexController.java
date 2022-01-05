@@ -1,26 +1,23 @@
 package com.example.projekt;
 
 import com.example.projekt.exceptions.Exceptionhandler;
-import com.example.projekt.model.Offer;
-import com.example.projekt.repository.OfferRepository;
+import com.example.projekt.data.model.Offer;
+import com.example.projekt.data.repository.IOfferRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/")
 public class IndexController {
 
-    private OfferRepository offerRepository;
+    private IOfferRepository offerRepository;
     private Exceptionhandler exHandler;
 
-    public IndexController(OfferRepository offerRepository){
+    public IndexController(IOfferRepository offerRepository){
         this.offerRepository = offerRepository;
     }
 

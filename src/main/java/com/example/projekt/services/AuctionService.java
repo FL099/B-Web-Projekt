@@ -3,10 +3,10 @@ package com.example.projekt.services;
 import com.example.projekt.dto.AuctionDto;
 import com.example.projekt.dto.OfferDto;
 import com.example.projekt.interfaces.IAuctionService;
-import com.example.projekt.model.Auction;
-import com.example.projekt.model.Offer;
-import com.example.projekt.repository.AuctionRepository;
-import com.example.projekt.repository.OfferRepository;
+import com.example.projekt.data.model.Auction;
+import com.example.projekt.data.model.Offer;
+import com.example.projekt.data.repository.IAuctionRepository;
+import com.example.projekt.data.repository.IOfferRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
@@ -19,10 +19,10 @@ import java.util.List;
 public class AuctionService implements IAuctionService {
 
     private final ModelMapper modelMapper = new ModelMapper();
-    private final AuctionRepository auctionRepository;
-    private final OfferRepository offerRepository;
+    private final IAuctionRepository auctionRepository;
+    private final IOfferRepository offerRepository;
 
-    public AuctionService(AuctionRepository auctionRepository, OfferRepository offerRepository){
+    public AuctionService(IAuctionRepository auctionRepository, IOfferRepository offerRepository){
         this.auctionRepository = auctionRepository;
         this.offerRepository = offerRepository;
     }

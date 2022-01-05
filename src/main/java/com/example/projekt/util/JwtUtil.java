@@ -6,10 +6,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.projekt.model.Auth;
+import com.example.projekt.data.model.Auth;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class JwtUtil {
     //https://github.com/auth0/java-jwt

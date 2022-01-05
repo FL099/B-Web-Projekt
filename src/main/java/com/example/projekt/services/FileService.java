@@ -1,8 +1,8 @@
 package com.example.projekt.services;
 
 import com.example.projekt.interfaces.IFileService;
-import com.example.projekt.model.File;
-import com.example.projekt.repository.FileRepository;
+import com.example.projekt.data.model.File;
+import com.example.projekt.data.repository.IFileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,9 +16,9 @@ import java.util.List;
 public class FileService implements IFileService {
 
     public static String uploadDirectory = System.getProperty("user.dir") + "\\uploads";
-    FileRepository fileRepository;
+    IFileRepository fileRepository;
 
-    public FileService(FileRepository fileRepository){
+    public FileService(IFileRepository fileRepository){
         this.fileRepository = fileRepository;
 
         /**

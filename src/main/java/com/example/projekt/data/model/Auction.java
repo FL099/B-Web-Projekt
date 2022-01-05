@@ -1,4 +1,4 @@
-package com.example.projekt.model;
+package com.example.projekt.data.model;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,9 +1,9 @@
 package com.example.projekt.services;
 
 import com.example.projekt.interfaces.ILoginService;
-import com.example.projekt.model.Auth;
-import com.example.projekt.model.User;
-import com.example.projekt.repository.UserRepository;
+import com.example.projekt.data.model.Auth;
+import com.example.projekt.data.model.User;
+import com.example.projekt.data.repository.IUserRepository;
 import com.example.projekt.util.JwtUtil;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,9 @@ import static com.example.projekt.util.crypt.isValid;
 @Service
 public class LoginService implements ILoginService {
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
 
-    public LoginService(UserRepository userRepository){
+    public LoginService(IUserRepository userRepository){
         this.userRepository = userRepository;
     }
 

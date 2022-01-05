@@ -1,6 +1,6 @@
 package com.example.projekt.interfaces;
 
-import com.example.projekt.model.File;
+import com.example.projekt.data.model.File;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

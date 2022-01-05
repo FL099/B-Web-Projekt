@@ -4,7 +4,7 @@ import com.example.projekt.dto.AuctionDto;
 import com.example.projekt.dto.OfferDto;
 import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.interfaces.IAuctionService;
-import com.example.projekt.model.Auction;
+import com.example.projekt.data.model.Auction;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;

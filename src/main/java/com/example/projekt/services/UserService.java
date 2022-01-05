@@ -1,10 +1,9 @@
 package com.example.projekt.services;
 
 import com.example.projekt.dto.UserDto;
-import com.example.projekt.interfaces.IUserService;
-import com.example.projekt.model.Auth;
-import com.example.projekt.model.User;
-import com.example.projekt.repository.UserRepository;
+import com.example.projekt.data.model.Auth;
+import com.example.projekt.data.model.User;
+import com.example.projekt.data.repository.IUserRepository;
 import com.example.projekt.util.JwtUtil;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -17,12 +16,12 @@ import java.util.List;
 import static com.example.projekt.util.crypt.getSHA256;
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements com.example.projekt.interfaces.IUserService {
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
     private final ModelMapper modelMapper = new ModelMapper();
 
-    public UserService(UserRepository userRepository){
+    public UserService(IUserRepository userRepository){
         this.userRepository = userRepository;
     }
 

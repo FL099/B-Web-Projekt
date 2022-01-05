@@ -2,7 +2,7 @@ package com.example.projekt.controller;
 
 import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.interfaces.ILoginService;
-import com.example.projekt.model.Auth;
+import com.example.projekt.data.model.Auth;
 import com.example.projekt.services.LoginService;
 import com.example.projekt.util.JwtUtil;
 import org.springframework.http.HttpStatus;

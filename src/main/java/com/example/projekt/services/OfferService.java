@@ -2,8 +2,8 @@ package com.example.projekt.services;
 
 import com.example.projekt.dto.OfferDto;
 import com.example.projekt.interfaces.IOfferService;
-import com.example.projekt.model.Offer;
-import com.example.projekt.repository.OfferRepository;
+import com.example.projekt.data.model.Offer;
+import com.example.projekt.data.repository.IOfferRepository;
 import com.example.projekt.util.State;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -16,11 +16,11 @@ import java.util.List;
 @Service
 public class OfferService implements IOfferService {
 
-    private final OfferRepository offerRepository;
+    private final IOfferRepository offerRepository;
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    public OfferService(OfferRepository offerRepository){
+    public OfferService(IOfferRepository offerRepository){
         this.offerRepository = offerRepository;
     }
 

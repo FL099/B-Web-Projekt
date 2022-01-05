@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.example.projekt.model.File;
+import com.example.projekt.data.model.File;
 
 @RestController
 @RequestMapping("/file")

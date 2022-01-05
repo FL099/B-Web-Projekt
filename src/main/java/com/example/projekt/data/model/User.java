@@ -1,4 +1,4 @@
-package com.example.projekt.model;
+package com.example.projekt.data.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

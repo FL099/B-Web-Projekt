@@ -1,13 +1,9 @@
 package com.example.projekt.interfaces;
 
 import com.example.projekt.dto.OfferDto;
-import com.example.projekt.model.Offer;
+import com.example.projekt.data.model.Offer;
 import com.example.projekt.util.State;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.List;
 
 public interface IOfferService {

@@ -1,7 +1,7 @@
 package com.example.projekt.interfaces;
 
 import com.example.projekt.dto.UserDto;
-import com.example.projekt.model.User;
+import com.example.projekt.data.model.User;
 
 public interface IUserService {
     boolean checkEmailExists(String email);

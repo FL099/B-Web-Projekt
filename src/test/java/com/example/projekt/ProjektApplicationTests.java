@@ -1,6 +1,6 @@
 package com.example.projekt;
 
-import com.example.projekt.model.User;
+import com.example.projekt.data.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

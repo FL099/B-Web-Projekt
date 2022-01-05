@@ -1,8 +1,7 @@
 package com.example.projekt.controller;
 
 import com.example.projekt.dto.OfferDto;
-import com.example.projekt.model.Offer;
-import com.example.projekt.repository.OfferRepository;
+import com.example.projekt.data.model.Offer;
 import com.example.projekt.exceptions.Exceptionhandler;
 import com.example.projekt.interfaces.IOfferService;
 import com.example.projekt.services.OfferService;
@@ -10,7 +9,6 @@ import com.example.projekt.util.State;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
