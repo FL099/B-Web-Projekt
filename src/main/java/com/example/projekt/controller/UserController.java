@@ -2,9 +2,11 @@ package com.example.projekt.controller;
 
 import com.example.projekt.dto.UserDto;
 import com.example.projekt.exceptions.Exceptionhandler;
+import com.example.projekt.interfaces.IUserService;
 import com.example.projekt.model.Auth;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserRepository;
+import com.example.projekt.services.UserService;
 import com.example.projekt.util.JwtUtil;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -26,86 +28,47 @@ public class UserController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    private UserRepository userRepository;
+    private IUserService userService;
 
-    public UserController(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public UserController(IUserService userService){
+        this.userService = userService;
     }
 
-    @GetMapping("/mail/{mail}")
+    @GetMapping("/mail/{mail}")     //TODO: bei account Erstellung zum prüfen ob mail verfügbar, beim anmelden, ob nicht verfügbar(->heißt der Account existiert)
     public @ResponseBody Boolean isEmailAvailable(@PathVariable("mail") String email){
-        if(!userRepository.findByEmailContaining(email).isEmpty()){
-            return true;
-        }
-        return false;
-        //TODO: falls besser: false wenns nicht verfügbar ist, true wenn schon
+        return userService.checkEmailExists(email);
     }
 
-    @GetMapping
+    @GetMapping     //TODO: löschen, wenns nicht mehr zum testen gebraucht wird
     public Iterable<UserDto> getUsers() {
-        return modelMapper.map(userRepository.findAll(),
-                new TypeToken<List<UserDto>>(){}.getType());
+        return userService.getUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")    //TODO: löschen, wenns nicht mehr zum testen gebraucht wird
     public UserDto getUser(@PathVariable Integer id) {
-        return modelMapper.map(getUserFromRepoOrThrow(id), UserDto.class);
+        return userService.getSingleUser(id);
     }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public String createUser(@RequestBody @Valid UserDto user){
-        String temp ;
-        if (user != null){
-            User newU = modelMapper.map(user, User.class);
-            //Hash zum speichern des PW in der Datenbank
-            temp = getSHA256(newU.getPassword());
-            newU.setPassword(temp);
-            try{
-                userRepository.save(newU);
-            }catch (Exception e){   //TODO: nur eigentliche Exception behandeln: java.sql.SQLIntegrityConstraintViolationException
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already used");
-            }
-
-            //JWT Token generieren
-            return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword())) + "\n" + temp;
-        }
-        return "registration failed";
-        //return userRepository.save(user);
+        return userService.createUser(user);
     }
 
     @PutMapping("/{id}")
     public UserDto updateUser(@RequestBody @Valid UserDto userDto, @PathVariable Integer id) {
-        User existingUser = getUserFromRepoOrThrow(id);
-
-        User user = modelMapper.map(userDto, User.class);
-        user.setId(existingUser.getId());
-
-        if (user.getPassword() == null) {
-            // no password provided -> use existing password
-            user.setPassword(existingUser.getPassword());
-        }else{
-            user.setPassword(getSHA256(user.getPassword()));
-        }
-        return modelMapper.map(userRepository.save(user), UserDto.class);
+        return userService.updateUser(userDto, id);
     }
 
 
     @DeleteMapping("/{id}")
     public UserDto deleteUser(@PathVariable Integer id) {
-        final UserDto existingUserDto = getUser(id);
-        userRepository.deleteById(id);
-        return existingUserDto;
+        return userService.deleteUser(id);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         return Exceptionhandler.handleGeneralExceptions(ex);
-    }
-
-    private User getUserFromRepoOrThrow(Integer id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }
