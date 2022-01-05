@@ -40,7 +40,7 @@ mysql> grant select, insert, delete, update on db_example.* to 'projektuser'@'%'
 * ~~Offers: Zuordnung zu Auctions über DB oder im Frontend über ID?~~
 * Files in Struktur speichern (Profilbilder getrennt von Icons usw)
 * Zugriffsverwaltung Files
-* Ersatz für _userId_ (bei Offers, Auktionen usw)-> Sicherheit
+* Ersatz(_UUID_) für _userId_ (bei Offers, Auktionen usw)-> Sicherheit
 * Individueller ID-Counter pro Table
 * __Tests!!__
 

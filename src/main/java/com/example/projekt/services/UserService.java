@@ -28,10 +28,7 @@ public class UserService implements IUserService {
 
     @Override
     public boolean checkEmailExists(String email){
-        if(!userRepository.findByEmailContaining(email).isEmpty()){
-            return true;
-        }
-        return false;
+        return !userRepository.findByEmailContaining(email).isEmpty();
         //TODO: falls besser: false wenns nicht verfügbar ist, true wenn schon
     }
 
