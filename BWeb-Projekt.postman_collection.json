@@ -24,24 +24,6 @@
 			"response": []
 		},
 		{
-			"name": "/user abfragen",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/user",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "User erstellen",
 			"request": {
 				"method": "POST",
@@ -64,6 +46,44 @@
 					"path": [
 						"user",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alle User ausgeben",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abfragen ob mail bereits verwendet wird",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/user/mail/m-mus@test.at",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						"mail",
+						"m-mus@test.at"
 					]
 				}
 			},
@@ -104,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product\": \"Fanta\",\r\n    \"amount\" : 15,\r\n    \"creatorId\": 12\r\n}",
+					"raw": "{\r\n    \"product\": \"Fanta\",\r\n    \"minAmount\" : 1,\r\n    \"creatorId\": 12,\r\n    \"price\": 11\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -126,13 +146,70 @@
 			"response": []
 		},
 		{
+			"name": "Auction Offer hinzufügen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 6,\r\n    \"price\": 41,\r\n    \"deliveryDate\": \"2021-11-02\",\r\n    \"auctionId\": 1,\r\n    \"creatorId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/auctions/1/offers",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auctions",
+						"1",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auction bearbeiten",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\": \"Fanta\",\r\n    \"minAmount\" : 1,\r\n    \"maxAmount\" : 100,\r\n    \"creatorId\": 12,\r\n    \"maxDelDate\": \"2022-12-11\",\r\n    \"minDelDate\": \"2021-11-11\",\r\n    \"endTime\": \"2022-01-14\",\r\n    \"startTime\": \"2021-11-11\",\r\n    \"minPrice\": 1,\r\n    \"maxPrice\": 400\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/auctions/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auctions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Offer erstellen",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"amount\": 6,\r\n    \"price\": 91,\r\n    \"deliveryDate\": \"2020-11-02T20:23:01Z\",\r\n    \"auctionId\": 11,\r\n    \"creatorId\": 2\r\n}",
+					"raw": "{\r\n    \"amount\": 6,\r\n    \"price\": 41,\r\n    \"deliveryDate\": \"2021-11-02T20:23:01Z\",\r\n    \"auctionId\": 11,\r\n    \"creatorId\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -201,17 +278,8 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"offer\": 6,\r\n    \"accepted\": true\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8081/offers?offer=6&accepted=true",
+					"raw": "localhost:8081/offers?offer=6&state=0",
 					"host": [
 						"localhost"
 					],
@@ -225,8 +293,8 @@
 							"value": "6"
 						},
 						{
-							"key": "accepted",
-							"value": "true"
+							"key": "state",
+							"value": "0"
 						}
 					]
 				},
@@ -240,14 +308,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/offers/12",
+					"raw": "localhost:8081/offers/19",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
 						"offers",
-						"12"
+						"19"
 					]
 				}
 			},
@@ -260,7 +328,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"testprodukt1\",\r\n    \"contents\": 1\r\n}",
+					"raw": "{\r\n    \"name\": \"testprodukt1\",\r\n    \"contents\": 3,\r\n    \"productpic\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -275,6 +343,53 @@
 					"port": "8081",
 					"path": [
 						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product bearbeiten",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"testprodukt1\",\r\n    \"contents\": 1,\r\n    \"description\": \"Alkoholisches Getränk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/products/17",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product mit bestimmter Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/products/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products",
+						"8"
 					]
 				}
 			},
@@ -306,14 +421,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/products/15",
+					"raw": "localhost:8081/products/18",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
 						"products",
-						"15"
+						"18"
 					]
 				}
 			},
