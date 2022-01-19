@@ -1,10 +1,93 @@
 {
 	"info": {
-		"_postman_id": "d1d1440b-cd53-457c-b7f1-317ffc0e7dac",
+		"_postman_id": "38082498-5baf-46a5-a255-438926474b97",
 		"name": "BWeb-Projekt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "create auctions",
+			"item": [
+				{
+					"name": "create cola",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"Cola 1980\",\n    \"minAmount\" : 6,\n    \"creatorId\": 1,\n    \"price\": 11\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auctions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auctions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create fanta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"Fanta Orange\",\n    \"minAmount\" : 12,\n    \"creatorId\": 1,\n    \"price\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auctions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auctions",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
 		{
 			"name": "Wie Auction Aussehen muss",
 			"request": {
