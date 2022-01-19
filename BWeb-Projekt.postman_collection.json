@@ -1,21 +1,99 @@
 {
 	"info": {
-		"_postman_id": "d1d1440b-cd53-457c-b7f1-317ffc0e7dac",
+		"_postman_id": "89ba9b7a-1e3f-49de-a660-9e22b7e9bf18",
 		"name": "BWeb-Projekt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "create auctions",
+			"item": [
+				{
+					"name": "create cola",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"Cola 1980\",\n    \"minAmount\" : 6,\n    \"creatorId\": 1,\n    \"price\": 11\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auctions/",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auctions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create fanta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"Fanta Orange\",\n    \"minAmount\" : 12,\n    \"creatorId\": 1,\n    \"price\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auctions/",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auctions",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
 		{
 			"name": "Wie Auction Aussehen muss",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/auctions",
+					"raw": "{{server}}/auctions",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auctions"
 					]
@@ -38,11 +116,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/user/",
+					"raw": "{{server}}/user/",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"user",
 						""
@@ -57,11 +134,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/user",
+					"raw": "{{server}}/user",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"user"
 					]
@@ -75,11 +151,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/user/mail/m-mus@test.at",
+					"raw": "{{server}}/user/mail/m-mus@test.at",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"user",
 						"mail",
@@ -104,11 +179,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/user/",
+					"raw": "{{server}}/user/",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"user",
 						""
@@ -132,11 +206,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/auctions/",
+					"raw": "{{server}}/auctions/",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auctions",
 						""
@@ -160,11 +233,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/auctions/1/offers",
+					"raw": "{{server}}/auctions/1/offers",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auctions",
 						"1",
@@ -189,11 +261,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/auctions/1",
+					"raw": "{{server}}/auctions/1",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auctions",
 						"1"
@@ -217,11 +288,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/offers/",
+					"raw": "{{server}}/offers/",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"offers",
 						""
@@ -237,11 +307,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/offers/byUser/2",
+					"raw": "{{server}}/offers/byUser/2",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"offers",
 						"byUser",
@@ -258,11 +327,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/offers/byAuction/11",
+					"raw": "{{server}}/offers/byAuction/11",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"offers",
 						"byAuction",
@@ -279,11 +347,10 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/offers?offer=6&state=0",
+					"raw": "{{server}}/offers?offer=6&state=0",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"offers"
 					],
@@ -308,11 +375,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/offers/19",
+					"raw": "{{server}}/offers/19",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"offers",
 						"19"
@@ -336,11 +402,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/products",
+					"raw": "{{server}}/products",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"products"
 					]
@@ -363,11 +428,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/products/17",
+					"raw": "{{server}}/products/17",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"products",
 						"17"
@@ -382,11 +446,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/products/8",
+					"raw": "{{server}}/products/8",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"products",
 						"8"
@@ -401,11 +464,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/products/all/",
+					"raw": "{{server}}/products/all/",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"products",
 						"all",
@@ -421,11 +483,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/products/18",
+					"raw": "{{server}}/products/18",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"products",
 						"18"
@@ -449,11 +510,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/auth",
+					"raw": "{{server}}/auth",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auth"
 					],
@@ -488,11 +548,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/auth/check",
+					"raw": "{{server}}/auth/check",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auth",
 						"check"
@@ -523,11 +582,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/auth/test",
+					"raw": "{{server}}/auth/test",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"auth",
 						"test"
@@ -575,11 +633,10 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8081/file/upload",
+					"raw": "{{server}}/file/upload",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"file",
 						"upload"
@@ -594,11 +651,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8081/file/16",
+					"raw": "{{server}}/file/16",
 					"host": [
-						"localhost"
+						"{{server}}"
 					],
-					"port": "8081",
 					"path": [
 						"file",
 						"16"
