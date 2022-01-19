@@ -57,7 +57,7 @@ public class UserService implements com.example.projekt.interfaces.IUserService 
             }
 
             //JWT Token generieren
-            return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword())) + "\n" + temp;
+            return JwtUtil.generateToken(new Auth(user.getEmail(), user.getPassword()));
         }
         return "registration failed";
     }

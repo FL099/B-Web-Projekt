@@ -36,7 +36,7 @@ public class UserController {
         return userService.getSingleUser(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String createUser(@RequestBody @Valid UserDto user){
         return userService.createUser(user);
