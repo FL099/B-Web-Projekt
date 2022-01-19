@@ -1,8 +1,12 @@
 package com.example.projekt.auth.filters;
 
+import com.example.projekt.data.model.Auth;
+import com.example.projekt.util.JwtUtil;
+import com.example.projekt.util.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -27,6 +31,19 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        super.successfulAuthentication(request, response, chain, authResult);
+        User user = (User) authResult.getPrincipal();
+        Auth auth = new Auth();
+        if (user.getAuthorities().contains("USER")){
+            auth = new Auth(user.getUsername(), user.getPassword(), Role.USER);
+        }else if (user.getAuthorities().contains("ADMIN")){
+            auth = new Auth(user.getUsername(), user.getPassword(), Role.ADMIN);
+        }
+
+        String access_token = JwtUtil.generateAccessToken(request, auth);
+        String refresh_token = JwtUtil.generateRefreshToken(request, auth);
+        JwtUtil.setResponseBodyToken(response, access_token, refresh_token);
+
+
+        //super.successfulAuthentication(request, response, chain, authResult);
     }
 }
