@@ -20,6 +20,7 @@ public class JwtUtil {
             Calendar exp = Calendar.getInstance();
             exp.add(Calendar.HOUR_OF_DAY, 1);
             String token = JWT.create()
+                    .withSubject(auth.getEmail())
                     .withClaim("name", auth.getEmail())
                     .withExpiresAt(exp.getTime())
                     .withIssuer("DrinkMarket")
@@ -47,6 +48,11 @@ public class JwtUtil {
             //Invalid signature/claims
         }
         return "Authentifizierung fehlgeschlagen";
+    }
+
+    public static DecodedJWT getDecodedJWT(String token) {
+        JWTVerifier jwtVerifier = JWT.require(algorithm).build();
+        return jwtVerifier.verify(token);
     }
 }
 

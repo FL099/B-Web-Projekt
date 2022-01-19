@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    //84.113.84.90
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/products").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/user").hasAnyAuthority(String.valueOf(Role.ADMIN)); // validation of request e.g. for GET:/api/users must have the role ROLE_ADMIN
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/user/{id}").hasAnyAuthority(String.valueOf(Role.USER)); // validation of request e.g. for GET:/api/users/{id} must have the role ROLE_USER
-        */http.authorizeRequests().anyRequest().authenticated(); // every incoming request should be authenticated
+*/
+        http.authorizeRequests().anyRequest().authenticated(); // every incoming request should be authenticated
         http.addFilter(customAuthenticationFilter);
 
         // the CustomAuthorizationFilter must come before the other filters because every request must be intercepted before any other filters

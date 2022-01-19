@@ -32,7 +32,7 @@ public class AuctionController {
         return auctionService.getAuction(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Auction create(@RequestBody @Valid Auction auction){
         return auctionService.createAuction(auction);
