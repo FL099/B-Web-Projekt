@@ -34,7 +34,7 @@ public class ProductController {
 
     @GetMapping("/all/")
     public List<ProductDto> getProducts(){
-        return  getProducts();
+        return  productService.getProducts();
     }
 
     @PostMapping

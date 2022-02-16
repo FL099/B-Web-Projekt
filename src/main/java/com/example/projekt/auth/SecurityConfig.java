@@ -38,12 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/auth/**").permitAll(); // request to "login" are permitted without any validation
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/user").permitAll();
-        //http.authorizeRequests().antMatchers("/**").permitAll(); //TODO: löschen(ist nur zu Testzwecken)
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/auctions", "/auctions/**").permitAll();
+        http.authorizeRequests().antMatchers("/**").permitAll(); //TODO: löschen(ist nur zu Testzwecken)
+        /*http.authorizeRequests().antMatchers(HttpMethod.GET, "/auctions", "/auctions/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/products").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/user").hasAnyAuthority(String.valueOf(Role.ADMIN)); // validation of request e.g. for GET:/api/users must have the role ROLE_ADMIN
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/user/{id}").hasAnyAuthority(String.valueOf(Role.USER)); // validation of request e.g. for GET:/api/users/{id} must have the role ROLE_USER
-
+*/
         http.authorizeRequests().anyRequest().authenticated(); // every incoming request should be authenticated
         http.addFilter(customAuthenticationFilter);
 
