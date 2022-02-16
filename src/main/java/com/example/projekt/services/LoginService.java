@@ -5,6 +5,7 @@ import com.example.projekt.data.model.Auth;
 import com.example.projekt.data.model.User;
 import com.example.projekt.data.repository.IUserRepository;
 import com.example.projekt.util.JwtUtil;
+import com.example.projekt.util.Role;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
@@ -29,6 +30,10 @@ public class LoginService implements ILoginService {
     @Override
     public String checkLogin(Auth auth) {
         String newHash = getSHA256(auth.getPassword());
+
+        if(auth.getRole()==null){
+            auth.setRole(Role.USER);
+        }
 
         String token = JwtUtil.generateToken(auth);
 
